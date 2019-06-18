@@ -1,8 +1,8 @@
 # Serverless Aws Auto Resource Names
 
 This is a plugin for the [Serverless Framework](https://serverless.com/).
-When "aws" is used as the provider this plugin will automatically
-insert names for the resources or output exports for which none are specified.
+When "aws" is used as the provider, this plugin will automatically
+insert names for the resources, and if enabled exports, for which none are specified.
 
 ## Name Generation
 
@@ -18,7 +18,8 @@ but will never overwrite a specified one. This also holds for outputs.
 custom:
     awsAutoResourceNames:
         prefix: ${self:service}_${self:provider.stage}_ # myservice_dev_
-        outputPrefix: ${self:service}_${self:provider.stage}_export_ # myservice_dev_export_
+        exportPrefix: ${self:service}_${self:provider.stage}_export_ # myservice_dev_export_
+        generateExports: true
 ````
 will have
 ````
@@ -71,9 +72,13 @@ custom:
     ...
 ````
 
-#### ``prefix: String``
+#### ``prefix: String`` ``Default: none``
 The prefix that is prepended before each generated resource name.
 
-#### ``outputPrefix: String?``
+#### ``exportPrefix: String?`` ``Default: none``
 
 The prefix used for the generation of output export name generation when specified.
+
+#### ``generateExports: Boolean?`` ``Default: false``
+
+When true, it will generate names for all outputs, which have not specified an export, therefore exporting all of them.
