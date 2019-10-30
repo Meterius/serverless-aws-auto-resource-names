@@ -21,13 +21,13 @@ custom:
         exportPrefix: ${self:service}_${self:provider.stage}_export_ # myservice_dev_export_
         generateExports: true
 ````
-will have
+will
 ````
 MyTestRepo:
     Type: AWS::CodeCommit::Repository
 ````
 
-go to
+replace by
 
 ````
 MyTestRepo:
@@ -44,7 +44,7 @@ Outputs:
         Value: ...
 ````
 
-go to
+replace by
 
 ````
 Outputs:
@@ -57,9 +57,11 @@ Outputs:
 ### Special Cases
 
 Name generation is explicitly defined on a type to type basis, therefore some types might not have names automatically inserted.
-In which case those will be added in future version. And here are some special type behaviour cases.
+In which case a warning will be logged. In case a resource you want to be automatically named is not yet specified, please create a issue in the GitHub repository.
 
-``AWS::S3::Bucket`` - names will have underscores replaced by dots, since buckets cant handle underscores.
+And here are some special type behaviour cases:
+
+``AWS::S3::Bucket`` - names will have underscores replaced by dashes, since buckets can't handle underscores.
 
 ## Configuration
 
