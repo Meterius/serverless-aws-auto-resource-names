@@ -1,0 +1,26 @@
+service: "test-service"
+
+provider:
+  name: aws
+
+plugins:
+  localPath: "../lib"
+  modules:
+    - index
+
+custom:
+  awsAutoResourceNames:
+    prefix: "the-prefix-"
+
+resources:
+  Resources:
+    SuperTable:
+      Type: AWS::DynamoDB::Table
+
+    ThatStorage:
+      Type: AWS::S3::Bucket
+
+    SomeQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        FifoQueue: true
