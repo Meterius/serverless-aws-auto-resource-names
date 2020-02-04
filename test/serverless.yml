@@ -11,6 +11,8 @@ plugins:
 custom:
   awsAutoResourceNames:
     prefix: "the-prefix-"
+    exportPrefix: "the-export-prefix-"
+    generateExports: true
 
 resources:
   Resources:
@@ -24,3 +26,7 @@ resources:
       Type: AWS::SQS::Queue
       Properties:
         FifoQueue: true
+
+  Outputs:
+    SomeExport:
+      Value: not-good
